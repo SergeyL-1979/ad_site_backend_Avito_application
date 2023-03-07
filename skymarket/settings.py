@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # my_app
     'redoc.apps.RedocConfig',
     'users.apps.UsersConfig',
-
+    'ads.apps.AdsConfig',
 
     # Фильтры django-filter
     'django_filters',
