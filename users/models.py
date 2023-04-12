@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 class UserRoles:
     USER = 'Пользователь'
     ADMIN = 'Администратор'
-    ROLE = [(USER, USER), (ADMIN, ADMIN)]
+    ROLE = [(USER, 'user'), (ADMIN, 'admin')]
 
 
 class User(AbstractUser):
