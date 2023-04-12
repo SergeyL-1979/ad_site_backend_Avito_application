@@ -28,7 +28,7 @@ class Ad(models.Model):
         verbose_name_plural = 'Объявления'
 
     def __str__(self):
-        return self.title
+        return '{}'.format(self.title)
 
 
 class Comment(models.Model):
@@ -41,3 +41,6 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+
+    def __str__(self):
+        return '{}'.format(self.author)
