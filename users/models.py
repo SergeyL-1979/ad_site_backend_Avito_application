@@ -5,12 +5,13 @@ from django.utils.translation import gettext_lazy as _
 
 
 class UserRoles:
-    USER = 'Пользователь'
-    ADMIN = 'Администратор'
-    ROLE = [(USER, 'user'), (ADMIN, 'admin')]
+    USER = 'user'
+    ADMIN = 'admin'
+    ROLE = [(USER, USER), (ADMIN, ADMIN)]
 
 
 class User(AbstractUser):
+    username = None
     email = models.EmailField(_('email'), db_index=True, max_length=60, unique=True, blank=True)
     phone = models.CharField(_('phone'), max_length=12, null=False, blank=False)
     role = models.CharField(_('role'), max_length=15, choices=UserRoles.ROLE, default=UserRoles.USER)
