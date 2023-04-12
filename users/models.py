@@ -10,10 +10,10 @@ class UserRoles:
     ROLE = [(USER, USER), (ADMIN, ADMIN)]
 
 
-class User(AbstractBaseUser):
+class User(AbstractUser):
     email = models.EmailField(_('email'), db_index=True, max_length=60, unique=True, blank=True)
     phone = models.CharField(_('phone'), max_length=12, null=False, blank=False)
-    role = models.CharField(_('role'), max_length=15, choices=UserRoles, default=UserRoles.USER)
+    role = models.CharField(_('role'), max_length=15, choices=UserRoles.ROLE, default=UserRoles.USER)
     last_login = models.DateTimeField(_('last_login'), auto_now=True)
     image = models.ImageField(_('image'), upload_to="img_users")
 
