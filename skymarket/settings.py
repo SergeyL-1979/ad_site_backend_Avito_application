@@ -38,6 +38,11 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    # my_app
+    'users',
+    'ads',
+    'redoc',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,23 +50,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # сторонний пакет для конечных точек регистрации и аутентификации пользователей
+    'djoser',
+    'corsheaders',
+
     # Библиотека реализации rest API для django
     "rest_framework",
-    'rest_framework.authtoken',
+    # 'rest_framework.authtoken',
     # JWT authentication backend library (Серверная библиотека аутентификации JWT)
     'rest_framework_simplejwt',
 
     # Фильтры django-filter
     'django_filters',
-
-    # сторонний пакет для конечных точек регистрации и аутентификации пользователей
-    'djoser',
-    'corsheaders',
-
-    # my_app
-    'users',
-    'ads',
-    'redoc',
 
     # Подключаем OpenAPI
     'drf_spectacular',
@@ -181,8 +181,40 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SITE_ID = 1
 
+# AUTHENTICATION_BACKENDS = [
+#     # Needed to login by username in Django admin, regardless of `allauth`
+#     'django.contrib.auth.backends.ModelBackend',
+#
+#     # `allauth` specific authentication methods, such as login by e-mail
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# ]
+
 AUTH_USER_MODEL = 'users.User'
 LOGIN_USERNAME_FIELDS = ['email', ]
+
+# """
+# The user is required to hand over an e-mail address when signing up.
+# Пользователь должен передать адрес электронной почты при регистрации
+# """
+# ACCOUNT_EMAIL_REQUIRED = True
+
+# """ Enforce uniqueness of e-mail addresses. The emailaddress.email model field is set to UNIQUE.
+#  Forms prevent a user from registering with or adding an additional email address if
+#  that email address is in use by another account. """
+# ACCOUNT_UNIQUE_EMAIL = True
+
+# """ The user is required to enter a username when signing up.
+#  Note that the user will be asked to do so even if ACCOUNT_AUTHENTICATION_METHOD is set to email.
+#  Set to False when you do not wish to prompt the user to enter a username. """
+# ACCOUNT_USERNAME_REQUIRED = False
+
+# """ (=”username” | “email” | “username_email”)
+#     Specifies the login method to use – whether the user logs in by entering their username,
+#     e-mail address, or either one of both. Setting this to “email” requires ACCOUNT_EMAIL_REQUIRED=True """
+# ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+
+# """ Determines the e-mail verification method during signup – choose one of "mandatory", "optional", or "none". """
+# ACCOUNT_EMAIL_VERIFICATION = True
 
 # ============= Настройки электронной почты =========
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -197,7 +229,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
