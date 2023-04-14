@@ -8,7 +8,7 @@ User = get_user_model()
 
 
 class UserRegistrationSerializer(BaseUserRegistrationSerializer):
-    role = serializers.SlugRelatedField(slug_field='user', read_only=True)
+    # role = serializers.SlugRelatedField(slug_field='user', read_only=True)
     """ Убедитесь, что пароль содержит не менее 8 символов, не более 128,
     и так же что он не может быть прочитан клиентской стороной """
     password = serializers.CharField(

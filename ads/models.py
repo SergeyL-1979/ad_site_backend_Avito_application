@@ -12,6 +12,7 @@ class Ad(models.Model):
     description = models.TextField(_('description'), blank=True)
     image = models.ImageField(_('image'), upload_to="img_goods")
     created_at = models.DateTimeField(_('created_at'), auto_now_add=True)
+    # comment = models.ForeignKey('Comment', on_delete=models.CASCADE)
 
     def image_(self):
         if self.image:
@@ -26,6 +27,7 @@ class Ad(models.Model):
     class Meta:
         verbose_name = 'Объявление'
         verbose_name_plural = 'Объявления'
+        ordering = ["-created_at"]
 
     def __str__(self):
         return '{}'.format(self.title)

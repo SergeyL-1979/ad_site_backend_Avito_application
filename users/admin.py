@@ -12,4 +12,6 @@ class MyUserAdmin(admin.ModelAdmin):
     list_display = ('email', 'phone', 'role', 'image_',)
     readonly_fields = ("image_", "last_login")
     filter_horizontal = ()
-    list_filter = ('phone', 'email')
+    list_filter = ('role', 'email')
+    list_per_page = 10
+    list_max_show_all = 100

@@ -1,7 +1,12 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import pagination, viewsets
+from rest_framework.generics import RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated
 
-from ads.models import Ad
-from ads.serializers import AdSerializer
+from ads.models import Ad, Comment
+from ads.serializers import AdSerializer, AdDetailSerializer
+from ads.serializers import CommentSerializer
+from ads.filters import AdFilter
 
 
 class AdPagination(pagination.PageNumberPagination):
@@ -13,8 +18,17 @@ class AdViewSet(viewsets.ModelViewSet):
     queryset = Ad.objects.all()
     serializer_class = AdSerializer
     pagination_class = AdPagination
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = AdFilter
+
+
+class AdDetailViewSet(RetrieveAPIView):
+    queryset = Ad.objects.all()
+    serializer_class = AdDetailSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class CommentViewSet(viewsets.ModelViewSet):
-    pass
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
 
