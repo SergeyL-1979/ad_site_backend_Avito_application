@@ -4,6 +4,7 @@ from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from ads.models import Ad, Comment
+from ads.permissions import AdAdminPermission
 from ads.serializers import AdSerializer, AdDetailSerializer
 from ads.serializers import CommentSerializer
 from ads.filters import AdFilter
@@ -20,12 +21,13 @@ class AdViewSet(viewsets.ModelViewSet):
     pagination_class = AdPagination
     filter_backends = (DjangoFilterBackend,)
     filterset_class = AdFilter
+    # permission_classes = [IsAuthenticated]
 
 
 class AdDetailViewSet(RetrieveAPIView):
     queryset = Ad.objects.all()
     serializer_class = AdDetailSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated | AdAdminPermission]
 
 
 class CommentViewSet(viewsets.ModelViewSet):
