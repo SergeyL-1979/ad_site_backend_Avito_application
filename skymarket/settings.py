@@ -169,7 +169,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "django_media")
 CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:3000",
-#     "http://127.0.0.1:8000"
+#     "http://localhost:8000"
 # ]
 # CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
 # CORS_ALLOW_CREDENTIALS = True
@@ -300,6 +300,7 @@ SIMPLE_JWT = {
 
 # здесь мы настраиваем Djoser
 DJOSER = {
+    'LOGIN_FIELD': 'email',
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
@@ -308,11 +309,13 @@ DJOSER = {
         'user_create': 'users.serializers.UserRegistrationSerializer',
         'current_user': 'users.serializers.CurrentUserSerializer',
     },
-    'LOGIN_FIELD': 'email',
 
     'EMAIL': {
         # === 'password_reset': 'appName.viewFileName.PasswordResetEmail' ===
         'password_reset': 'users.email.PasswordResetEmail',
+    },
+    'PERMISSIONS': {
+        'user_list': ['rest_framework.permissions.AllowAny'],
     },
 
 

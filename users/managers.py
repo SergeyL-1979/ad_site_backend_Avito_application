@@ -9,7 +9,7 @@ class UserManager(BaseUserManager):
     Функция создания пользователя — в нее мы передаем обязательные поля
     """
 
-    def create_user(self, email, first_name, last_name, phone, role='user', password=None):
+    def create_user(self, email, first_name, last_name, phone, image, role='user', password=None):
         if not email:
             raise ValueError('Users must have an email address')
 
@@ -17,10 +17,11 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             first_name=first_name,
             last_name=last_name,
+            image=image,
             phone=phone,
             role=role
         )
-        user.is_active = True
+        user.is_active = False  # для активации пользователя по ссылке надо установить False по умолчанию
         user.set_password(password)
         user.save(using=self._db)
         return user
