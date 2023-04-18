@@ -14,15 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path, include
+
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/redoc-tasks', include("redoc.urls")),
+    path('api/redoc-tasks/', include("redoc.urls")),
 
     path('api-auth/', include('rest_framework.urls')),
 
@@ -30,7 +30,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('auth/', include('djoser.urls.jwt')),
 
-    path('', include('ads.urls')),
+    path('api/api/', include('ads.urls')),
 
     # === API Document ===
     # YOUR PATTERNS
@@ -40,5 +40,3 @@ urlpatterns = [
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# urlpatterns += staticfiles_urlpatterns()
