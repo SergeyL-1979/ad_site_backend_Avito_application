@@ -48,7 +48,7 @@ class CurrentUserSerializer(serializers.ModelSerializer):
         """ Перечислить все поля, которые могут быть включены в запрос
         или ответ, включая поля, явно указанные выше. """
         model = User
-        fields = ['email', 'password', 'first_name', 'last_name', 'phone', 'role', 'image_', 'token', 'last_login', ]
+        fields = ['email', 'password', 'first_name', 'last_name', 'phone', 'role', 'image', 'token', 'last_login', ]
 
     def update(self, instance, validated_data):
         instance.email = validated_data.get("email", instance.email)
@@ -56,6 +56,6 @@ class CurrentUserSerializer(serializers.ModelSerializer):
         instance.last_name = validated_data.get("last_name", instance.last_name)
         instance.phone = validated_data.get("phone", instance.phone)
         instance.last_login = validated_data.get("last_login", instance.last_login)
-        instance.image = validated_data.get("image_", instance.image)
+        instance.image = validated_data.get("image", instance.image)
         instance.save()
         return instance

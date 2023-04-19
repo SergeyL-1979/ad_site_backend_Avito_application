@@ -3,7 +3,7 @@ from rest_framework import serializers
 from ads.models import Comment, Ad
 
 
-# TODO Сериалайзеры. Предлагаем Вам такую структуру, однако вы вправе использовать свою
+# Сериалайзеры. Предлагаем Вам такую структуру, однако вы вправе использовать свою
 
 class CommentSerializer(serializers.ModelSerializer):
     ad = serializers.SlugRelatedField(read_only=True, slug_field="title")
@@ -16,7 +16,6 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class AdSerializer(serializers.ModelSerializer):
     author = serializers.SlugRelatedField(read_only=True, slug_field="first_name", )
-    # comment = serializers.SlugRelatedField(queryset=Comment.objects.all(), slug_field='text', many=True,)
 
     class Meta:
         model = Ad

@@ -13,3 +13,9 @@ class AdAdminPermission(BasePermission):
         if request.user.role == UserRoles.ADMIN:
             return True
         return False
+
+
+class IsExecutor(BasePermission):
+
+    def has_object_permission(self, request, view, obj):
+        return obj.user == request.user
