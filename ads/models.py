@@ -12,7 +12,6 @@ class Ad(models.Model):
     description = models.TextField(_('description'), blank=True)
     image = models.ImageField(_('image'), upload_to="img_goods")
     created_at = models.DateTimeField(_('created_at'), auto_now_add=True)
-    # comment = models.ForeignKey('Comment', on_delete=models.CASCADE)
 
     def image_(self):
         if self.image:
@@ -35,7 +34,7 @@ class Ad(models.Model):
 
 class Comment(models.Model):
     """ Модуль хранения комментариев под объявлением """
-    ad = models.ForeignKey(Ad, on_delete=models.CASCADE)
+    ad = models.ForeignKey(Ad, on_delete=models.CASCADE, related_name='comments_by_ad')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField(_('comment_text'))
     created_at = models.DateTimeField(_('comment_create'), auto_now_add=True)
