@@ -54,7 +54,7 @@ class User(AbstractUser):
 
     def __str__(self):
         """ Строковое представление модели (отображается в консоли) """
-        return f"{self.email}, ({self.get_full_name()})"
+        return "{}, ({})".format(self.email, self.get_full_name())
 
     # Необходимые параметры для корректной работе Django
     @property
