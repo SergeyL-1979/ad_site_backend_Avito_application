@@ -18,4 +18,4 @@ class AdAdminPermission(BasePermission):
 class IsExecutor(BasePermission):
 
     def has_object_permission(self, request, view, obj):
-        return obj.user == request.user
+        return obj.author == request.user

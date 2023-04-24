@@ -26,11 +26,12 @@ urlpatterns = [
 
     path('api-auth/', include('rest_framework.urls')),
 
-    path('api/auth/', include('djoser.urls')),
-    path('api/auth/', include('djoser.urls.authtoken')),
-    path('api/auth/', include('djoser.urls.jwt')),
+    path('api/api/', include('djoser.urls')),
+    path('api/api/', include('djoser.urls.authtoken')),
+    path('api/api/', include('djoser.urls.jwt')),
 
-    path('api/', include('ads.urls')),
+    path('api/api/', include('ads.urls')),
+    path('api/auth/', include('users.urls')),
 
     # === API Document ===
     # YOUR PATTERNS
