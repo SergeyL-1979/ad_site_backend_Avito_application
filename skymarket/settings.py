@@ -167,6 +167,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "django_media")
 
 # ==== Настройки CORS ====================
 CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_METHODS = [
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# ]
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:3000",
 #     "http://localhost:8000"
@@ -234,11 +242,13 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend', ],
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+    # 'DEFAULT_PARSER_CLASSES': ['rest_framework.parsers.JSONParser', ],
+
     # ==== ГЛОБАЛЬНЫЙ УРОВЕНЬ ДОСТУПА =================
     # 'DEFAULT_PERMISSION_CLASSES': [
     #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
